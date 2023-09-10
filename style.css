@@ -1,14 +1,32 @@
-
-.terminal {
-    --color: aqua;
-    --link-color: darkblue;
-    --animation: terminal-glow;
-    --glow: .3;
-
-}
-
-body {
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+.terminal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #D3D3D3; 
+}
+
+#terminal {
+    --color: lightgreen;
+    width: 80%;
+    max-width: 600px;
+    height: 400px;
+    border-radius: 25px;
+    border: 2px solid #808080; 
+    --link-color: darkblue;
+    --animation: terminal-glow;
+    --glow: .3;
+  //  background-color: #333333; 
+ 
+
+}
+
+#vishnu .terminal-output {
+    text-align: center;
 }
