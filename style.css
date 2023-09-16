@@ -1,28 +1,54 @@
+
+/*.terminal {
+    //--color: #ff4473;
+    --color: #0ff;
+    --link-color: darkblue;
+    --animation: terminal-glow;
+    --glow: .3;
+    --background-color: yellow;
+
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color:black;
+}
+
+
+
+
+*/
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    top: 0;
+    right:0;
+    bottom:0;
+    left:0;
 }
 
 .terminal-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #D3D3D3; 
+    height: 100vh;
+    background-color: #28282B; 
 }
 
 #terminal {
-    --color: lightgreen;
-    width: 80%;
-    max-width: 600px;
-    height: 400px;
+    --color: #ff4473 ;
+    width: 75%;
+    height: 80vh;
     border-radius: 25px;
-    border: 2px solid #808080; 
-    --link-color: darkblue;
+    border: 2px solid #000000; 
+    --link-color: #0ff;
     --animation: terminal-glow;
     --glow: .3;
-  //  background-color: #333333; 
+    background-color: #33354B; 
+    --font-size: 78px;
  
 
 }
