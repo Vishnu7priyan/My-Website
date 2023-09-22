@@ -88,3 +88,52 @@ $(document).ready(function () {
                 home = false;
                 profile = false;
                 }
+          else{
+                    term.echo('Return to home using cd ..')
+                }
+                break;
+            case 'cd profile':
+                if (home == true){ password = false;
+                    profile = true;
+                    home = false;
+                    term.set_prompt('[[;white;]vishnu@terminal ~/profile >> ]')
+                    }
+                else{
+                    term.echo('Return to home using cd ..')
+                }
+                break;
+
+            case 'cat secret':
+                if(password == true){
+                    window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUOcmljayByb2xsIHNvbmc%3D'
+
+                }
+                else{
+                    term.echo('I think you are in wrong directory');
+                }                break
+
+            case 'cat summary':
+                if(profile == true){
+
+                term.echo(`
+    name: 
+    [[;#0ff;]Vishnupriyan]`);
+    term.echo(`
+    email: 
+    vishnupriyan1904@gmail.com`);
+    term.echo(`
+    github:
+    https://github.com/vishnu7priyan`)
+    term.echo(`
+    twitter: 
+    https://twitter.com/vishnuwebsec`);
+    term.echo(`
+    blog: 
+    https://cyberdug.hashnode.dev/`);
+    term.echo('');
+                }
+                else{
+                    term.echo('I think you are in wrong directory');
+                }  
+                break;
+
