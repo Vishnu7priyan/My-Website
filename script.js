@@ -137,3 +137,38 @@ $(document).ready(function () {
                 }  
                 break;
 
+            case 'pwd':
+                if(home == true){
+                    term.echo('/vishnu')
+                }
+                else if(password==true){
+                    term.echo('/vishnu/password')
+                }
+                else if (profile == true){
+                   term.echo('/vishnu/profile')
+                }
+                break
+            
+            case 'cat':
+                $.get("https://api.thecatapi.com/v1/images/search?size=small", function (data) {
+                    const catImageUrl = data[0].url;
+                    const img = $('<img width="300" height="200" src="' + catImageUrl + '">');
+                    img.width= 500;
+                    term.echo(img);
+                });
+                term.echo("You mean this cat?? ")
+
+                break;
+
+            case 'cat resume':
+                if(profile == true){
+                    const resumeLink = document.createElement('a');
+                    resumeLink.href = 'resume.html';
+                    resumeLink.textContent = "Click me";
+    
+                    term.echo(resumeLink)
+                }
+                else{
+                    term.echo('I think you are in wrong directory');
+                }                
+                break;
