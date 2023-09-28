@@ -183,19 +183,16 @@ $(document).ready(function () {
         name: 'my-terminal'
     });
 
-    function detectScreenSize() {
-        var width = $(window).width();
+$(window).on('resize', function() {
+    var newScreenWidth = $(window).width();
+    var newScreenHeight = $(window).height();
 
-        if (width < 768) {
-            $('#greeting').text('Welcome to the mobile version of the terminal!');
-        } else {
-            $('#greeting').text('Welcome to the desktop version of the terminal!');
-        }
-    }
+    // Display the updated screen size in the console
+    console.log("New Screen Width: " + newScreenWidth);
+    console.log("New Screen Height: " + newScreenHeight);
+    console.log('changed')
+    test()
 
-    detectScreenSize();
 
-    $(window).resize(function () {
-        detectScreenSize();
-    });
+    // You can perform actions based on the updated screen size here
 });
