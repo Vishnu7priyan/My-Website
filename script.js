@@ -42,79 +42,76 @@ function font(){
         }
     });
 }
-
-var profile = false;
-var password = false;
-var home = true;
+var profile = true;
+var password = true;
 $(document).ready(function () {
     $('#terminal').terminal(function (command , term ) {
+        const history = term.history().data()
+        grep = history[history.length -2]
+        grep2 = history[history.length -3]
+        function validate(){
+            if(grep == 'cd password' | grep == 'cat secret'){
+                window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUOcmljayByb2xsIHNvbmc%3D'
+    }
+    else{
+        term.echo('not valid')
+    }
+}
+
+function which_ls(){
+    if(grep == 'cd password'){
+        term.echo('secret')
+    }
+    else if (grep == 'cd profile'){
+        term.echo(`[[;#0ff;]summary ] \t`,{newline: false})
+        term.echo(`[[;#0ff;]about] \t`,{newline: false})
+        term.echo(`[[;#0ff;]blog] \t`,{newline: false})
+        term.echo(`[[;#0ff;]other] \t`)
+ 
+    }
+    else{
+         //term.echo(`[[;#0ff;]Here is list of available commands ]`)
+            //term.echo(`Use cd to navigate to directory`)
+            term.echo(`[[;white;]profile/] \t`, { newline: false })
+            term.echo(`[[;#0ff;]pwd] \t`,{newline: false})
+            term.echo(`[[;white;]password/]`)
+                 
+    }
+}
+
         switch (command) {
             case 'ls':
-                if(home == true){
-                    term.echo(`[[;white;]profile/] \t`, { newline: false })
-                    term.echo(`[[;#0ff;]pwd] \t`,{newline: false})
-                    term.echo(`[[;white;]password/] \t`,{newline: false})
-                    term.echo(`[[;#0ff;]banner] \t`,{newline: false})
-                    term.echo(`[[;#0ff;]history]`)
-                }
-                else if(password==true){
-                    term.echo('secret')
-                }
-                else if (profile == true){
-                    term.echo(`[[;#0ff;]summary ] \t`,{newline: false})
-                    term.echo(`[[;#0ff;]about] \t`,{newline: false})
-                    term.echo(`[[;#0ff;]blog] \t`,{newline: false})
-                    term.echo(`[[;#0ff;]other] \t`)
-                }
-                break
-            
-            case 'cd ..':
-                case 'cd':
-                if (home == true){
-                    term.echo('you are already in home :)')
-                }
-                else{
-                term.set_prompt('[[;white;]vishnu@terminal >> ]')
-                home = true;
-                password=false;
-                profile=false;}
-                break;    
-
-
-            case 'cd password':
-                if (home == true){
-                    term.set_prompt('[[;white;]vishnu@terminal ~/password >> ]')
-                password = true;
-                home = false;
-                profile = false;
-                }
-          else{
-                    term.echo('Return to home using cd ..')
-                }
+                which_ls()
                 break;
+
+             
+            case 'cd password':
+                password = true;
+                profile = false;
+                term.set_prompt('[[;white;]root@vishnu/password >> ]')
+                break;
+            
             case 'cd profile':
-                if (home == true){ password = false;
-                    profile = true;
-                    home = false;
-                    term.set_prompt('[[;white;]vishnu@terminal ~/profile >> ]')
-                    }
-                else{
-                    term.echo('Return to home using cd ..')
-                }
+                password = false;
+                profile = true;
+                term.set_prompt('[[;white;]root@vishnu/profile >> ]')
                 break;
 
             case 'cat secret':
-                if(password == true){
-                    window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUOcmljayByb2xsIHNvbmc%3D'
+                if(profile == true){}
+                validate()
+                break;
+                case 'cd home':
+                    home = true;
+                    password = false;
+                    profile = false;
+                    term.set_prompt('[[;white;]root@vishnu >> ]')
+                    break;
 
-                }
-                else{
-                    term.echo('I think you are in wrong directory');
-                }                break
-
+                case 'hi':
+                    term.echo('bro')
+                    break;
             case 'cat summary':
-                if(profile == true){
-
                 term.echo(`
     name: 
     [[;#0ff;]Vishnupriyan]`);
@@ -130,24 +127,13 @@ $(document).ready(function () {
     term.echo(`
     blog: 
     https://cyberdug.hashnode.dev/`);
-    term.echo('');
-                }
-                else{
-                    term.echo('I think you are in wrong directory');
-                }  
+
                 break;
 
             case 'pwd':
-                if(home == true){
-                    term.echo('/vishnu')
-                }
-                else if(password==true){
-                    term.echo('/vishnu/password')
-                }
-                else if (profile == true){
-                   term.echo('/vishnu/profile')
-                }
-                break
+                term.echo('/root')
+                break;
+            cat 
             
             case 'cat':
                 $.get("https://api.thecatapi.com/v1/images/search?size=small", function (data) {
@@ -161,38 +147,80 @@ $(document).ready(function () {
                 break;
 
             case 'cat resume':
-                if(profile == true){
-                    const resumeLink = document.createElement('a');
-                    resumeLink.href = 'resume.html';
-                    resumeLink.textContent = "Click me";
-    
-                    term.echo(resumeLink)
-                }
-                else{
-                    term.echo('I think you are in wrong directory');
-                }                
+                const resumeLink = document.createElement('a');
+                resumeLink.href = 'resume.html';
+                resumeLink.textContent = "Click me";
+
+                term.echo(resumeLink)
+                break;
+            case 'cat about':
+                // link element
+                const aboutLink = document.createElement('a');
+                aboutLink.href = '/about/about.html'; 
+                aboutLink.textContent = 'click here to read more about me';
+
+                // css styles to change the link color
+                aboutLink.style.color = 'pink'; 
+
+                // append the link element to the terminal
+                term.echo('');
+                term.echo(aboutLink);
+
                 break;
 
-$(document).ready(function () {
-    // Initialize the terminal
-    var terminal = $('#terminal').terminal(function (command) {
-        // Your terminal logic here
-        // For example, handle commands or display output.
+            case 'cat blog':
+                const blog_link = document.createElement('a');
+                blog_link.href = "https://cyberdug.hashnode.dev"
+                blog_link.textContent = "CyberDug"
+                blog_link.target = 'blank';
+                term.echo(blog_link)
+                break; 
+
+            case 'clear':
+                    term.echo('command no') //this doesnt work ????? try something else
+                break;
+
+           
+                
+            case 'cd blog ':
+            case 'cd about':
+            case 'cd summary':
+            case 'cd games':
+                term.echo('Not a Directory')
+                break;
+                
+            case 'test2':
+                var div = $('<p style="color:blue;">Hello <strong>World</strong></p>')
+                term.echo(div)
+                break;
+            case 'test3':
+               // term.echo(small.innerHTML)
+               //term.echo('<div class="large-font">File1.txt</div>');
+               //term.setOptions({ fontSize: 14 });
+               terminal.disable;
+               break;
+            case 'summary':
+            case 'blog':
+            case 'about':
+            case 'resume':
+                if (profile == true){
+                    term.echo('use cat to view')
+                }
+                break;
+            
+        }
     }, {
-        prompt: '>',
-        name: 'my-terminal'
+        greetings: vishnu.innerHTML,
+
+        prompt: '[[;white;]root@vishnu >> ] ',
+        onInit: function (term) {
+            // Enable HTML rendering for greetings
+            term.echo('', {
+                raw: true
+            });
+        }
     });
-
-$(window).on('resize', function() {
-    var newScreenWidth = $(window).width();
-    var newScreenHeight = $(window).height();
-
-    // Display the updated screen size in the console
-    console.log("New Screen Width: " + newScreenWidth);
-    console.log("New Screen Height: " + newScreenHeight);
-    console.log('changed')
-    test()
-
-
-    // You can perform actions based on the updated screen size here
 });
+
+
+
