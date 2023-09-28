@@ -172,3 +172,30 @@ $(document).ready(function () {
                     term.echo('I think you are in wrong directory');
                 }                
                 break;
+
+$(document).ready(function () {
+    // Initialize the terminal
+    var terminal = $('#terminal').terminal(function (command) {
+        // Your terminal logic here
+        // For example, handle commands or display output.
+    }, {
+        prompt: '>',
+        name: 'my-terminal'
+    });
+
+    function detectScreenSize() {
+        var width = $(window).width();
+
+        if (width < 768) {
+            $('#greeting').text('Welcome to the mobile version of the terminal!');
+        } else {
+            $('#greeting').text('Welcome to the desktop version of the terminal!');
+        }
+    }
+
+    detectScreenSize();
+
+    $(window).resize(function () {
+        detectScreenSize();
+    });
+});
