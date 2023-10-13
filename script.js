@@ -188,7 +188,19 @@ function which_ls(){
             case 'cd games':
                 term.echo('Not a Directory')
                 break;
-                
+             if(profile == true){
+                        var screenWidth = $(window).width();
+                        if (screenWidth <= 1024) {
+                            const pdfContainer = $('<div style="display: flex;flex-direction:column; overflow: auto;"></div>');
+                            pdfFiles.forEach(function (pdfUrl) {
+                            const iframe = $('<iframe width="300" height="200" src="' + pdfUrl + '" scrolling="no" overflow: none; style="margin-right: 10px;"></iframe>');
+                            pdfContainer.append(iframe);
+                        });
+                        term.echo(pdfContainer);
+                          }
+                          
+                          }
+                 break;
             case 'test2':
                 var div = $('<p style="color:blue;">Hello <strong>World</strong></p>')
                 term.echo(div)
