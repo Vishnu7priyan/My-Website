@@ -198,7 +198,14 @@ function which_ls(){
                         });
                         term.echo(pdfContainer);
                           }
-                          
+                          else{
+                            const pdfContainer = $('<div style="display: flex; overflow: auto;"></div>');
+                            pdfFiles.forEach(function (pdfUrl) {
+                            const iframe = $('<iframe width="300" height="200" src="' + pdfUrl + '" scrolling="no" style="margin-right: 10px;"></iframe>');
+                            pdfContainer.append(iframe);
+                        });
+                        
+                        term.echo(pdfContainer);
                           }
                  break;
             case 'test2':
